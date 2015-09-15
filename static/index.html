@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <title>rf-switches</title>
 </head>
 
@@ -12,18 +12,41 @@
 
     <button ng-click="app.addSwitch()">Add switch</button>
 
-    <div ng-repeat="switch in app.switches">
-        <p>
-            <input type="text" ng-model="switch.name"/> <br>
-            ID: {{ switch.id }} <br>
-            Room: {{ switch.room }} <br>
-            Type: {{ switch.type }} <br>
-            On command: {{ switch.on_command }} <br>
-            Off command: {{ switch.off_command }} <br>
-            <button ng-click="app.updateSwitch(switch)">Update</button>
-            <button ng-click="app.deleteSwitch(switch)">Delete</button>
-        </p>
-    </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Room</th>
+            <th>Type</th>
+            <th>On command</th>
+            <th>Off command</th>
+            <th></th>
+
+        </tr>
+
+        <tr ng-repeat="switch in app.switches">
+
+                <!--
+                <input type="text" ng-model="switch.name"/> <br>
+                <button ng-click="app.updateSwitch(switch)">Update</button>
+                <button ng-click="app.deleteSwitch(switch)">Delete</button>
+                -->
+
+                <td>{{ switch.id }}</td>
+                <td><input type="text" ng-model="switch.name"/></td>
+                <td><input type="text" ng-model="switch.room"/></td>
+                <td><input type="text" ng-model="switch.type"/></td>
+                <td><input type="text" ng-model="switch.on_command"/><button ng-click="app.switchOn(switch)">Send</button></td>
+                <td><input type="text" ng-model="switch.off_command"/><button ng-click="app.switchOff(switch)">Send</button></td>
+                <td><button ng-click="app.updateSwitch(switch)">Update</button></td>
+                <td><button ng-click="app.deleteSwitch(switch)">Delete</button></td>
+
+
+
+        </tr>
+
+
+    </table>
 
 </body>
 </html>

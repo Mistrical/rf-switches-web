@@ -27,5 +27,13 @@ app.controller("AppCtrl", function($http) {
         $http.put(server + "/" + selected_switch.id, selected_switch);
     }
 
+    app.switchOn = function (selected_switch) {
+        $http.get(server + "/" + selected_switch.id + "/1");
+    }
+
+    app.switchOff = function (selected_switch) {
+        $http.get(server + "/" + selected_switch.id + "/0");
+    }
+
 
 });
