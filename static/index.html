@@ -6,19 +6,24 @@
 
 <body ng-app="app" ng-controller="AppCtrl as app">
 
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+
+
+    <button ng-click="app.addSwitch()">Add switch</button>
+
     <div ng-repeat="switch in app.switches">
         <p>
-            Name: {{ switch.name }} <br>
+            <input type="text" ng-model="switch.name"/> <br>
             ID: {{ switch.id }} <br>
             Room: {{ switch.room }} <br>
             Type: {{ switch.type }} <br>
             On command: {{ switch.on_command }} <br>
             Off command: {{ switch.off_command }} <br>
+            <button ng-click="app.updateSwitch(switch)">Update</button>
+            <button ng-click="app.deleteSwitch(switch)">Delete</button>
         </p>
     </div>
-
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="js/app.js"></script>
 
 </body>
 </html>
