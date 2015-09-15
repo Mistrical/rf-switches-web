@@ -14,17 +14,17 @@ app.controller("AppCtrl", function($http) {
             app.switches.push(data);
         })
     }
-    /*
-    app.deleteSwitch = function (switch) {
-        $http.delete(server + "es/" + switch.id)
+
+    app.deleteSwitch = function (selected_switch) {
+        $http.delete(server + "/" + selected_switch.id)
         .success(function (data) {
-            app.switches.splice(app.switches.indexOf(switch), 1);
+            app.switches.splice(app.switches.indexOf(selected_switch), 1);
         })
     }
-    */
 
-    app.updateSwitch = function (switch) {
-        $http.put(server + "es/" + switch.id, switch);
+
+    app.updateSwitch = function (selected_switch) {
+        $http.put(server + "/" + selected_switch.id, selected_switch);
     }
 
 
