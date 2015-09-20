@@ -1,8 +1,8 @@
-var app = angular.module("app", []);
+var app = angular.module("app", ['ui.bootstrap']);
 
 app.controller("AppCtrl", function($http) {
     var app = this;
-    var server = "http://192.168.1.1:5000/api/switch"
+    var server = "http://192.168.1.2:5000/api/switch"
 
     $http.get(server).success (function (data) {
         app.switches = data.objects;
