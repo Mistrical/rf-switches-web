@@ -1,52 +1,92 @@
-<!DOCTYPE html>
-
+<!DOCTYPE html lang="en">
 <head xmlns="http://www.w3.org/1999/html">
-    <title>rf-switches</title>
-</head>
-
-<body ng-app="app" ng-controller="AppCtrl as app">
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Home GUI</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+    <!-- Angular core js -->
     <script src="bower_components/angular/angular.js"></script>
+    <!-- Bootstrap js -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+</head>
+<body ng-app="app" ng-controller="AppCtrl as app" role="document">
 
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Home GUI</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <button ng-click="app.addSwitch()">Add switch</button>
+    <div class="container theme-showcase" role="main">
+        <div class="page-header">
+            <h1>Switches</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Room</th>
+                            <th>Type</th>
+                            <th>On command</th>
+                            <th>Off command</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                        <tr ng-repeat="switch in app.switches">
+                            <td>{{ switch.id }}</td>
+                            <div class="btn-group">
+                                <td style="white-space:nowrap;">
+                                    <button type="button" class="btn btn-sm btn-success"  ng-click="app.switchOn(switch)">On</button>
+                                    <button type="button" class="btn btn-sm btn-danger" ng-click="app.switchOff(switch)">Off</button>
+                                </td>
+                            </div>
+                            <td><input type="text" ng-model="switch.name"/></td>
+                            <td><input type="text" ng-model="switch.room"/></td>
+                            <td><input type="text" ng-model="switch.type"/></td>
+                            <td><input type="text" ng-model="switch.on_command" style="width:120px;"/></td>
+                            <td><input type="text" ng-model="switch.off_command"  style="width:120px;"/></td>
+                            <td><button type="button" class="btn btn-sm btn-primary"  ng-click="app.updateSwitch(switch)">Update</button></td>
+                            <td><button type="button" class="btn btn-sm btn-danger" ng-click="app.deleteSwitch(switch)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="divAddSwitch" align="left">
+            <button type="button" class="btn btn-sm btn-primary" ng-click="app.addSwitch()">Add switch</button>
+        </div>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Room</th>
-            <th>Type</th>
-            <th>On command</th>
-            <th>Off command</th>
-            <th></th>
-
-        </tr>
-
-        <tr ng-repeat="switch in app.switches">
-
-                <!--
-                <input type="text" ng-model="switch.name"/> <br>
-                <button ng-click="app.updateSwitch(switch)">Update</button>
-                <button ng-click="app.deleteSwitch(switch)">Delete</button>
-                -->
-
-                <td>{{ switch.id }}</td>
-                <td><input type="text" ng-model="switch.name"/></td>
-                <td><input type="text" ng-model="switch.room"/></td>
-                <td><input type="text" ng-model="switch.type"/></td>
-                <td><input type="text" ng-model="switch.on_command"/><button ng-click="app.switchOn(switch)">Send</button></td>
-                <td><input type="text" ng-model="switch.off_command"/><button ng-click="app.switchOff(switch)">Send</button></td>
-                <td><button ng-click="app.updateSwitch(switch)">Update</button></td>
-                <td><button ng-click="app.deleteSwitch(switch)">Delete</button></td>
-
-
-
-        </tr>
-
-
-    </table>
-
+    </div>
 </body>
 </html>
